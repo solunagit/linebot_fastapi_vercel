@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from linebot import LineBotApi, WebhookParser
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
+from mangum import Mangum
 
 # Load .env
 load_dotenv()
@@ -110,3 +111,5 @@ async def global_exception_handler(request: Request, exc: Exception):
         status_code=500,
         content={"error": str(exc)},
     )
+
+handler = Mangum(app)
